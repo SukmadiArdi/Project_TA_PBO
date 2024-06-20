@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.MainMenuController">
+    <top>
+        <HBox spacing="10">
+            <Button text="Login Admin" onAction="#showAdminLogin" />
+            <Button text="Login Student" onAction="#showStudentLogin" />
+        </HBox>
+    </top>
+    <center>
+    </center>
+</BorderPane>

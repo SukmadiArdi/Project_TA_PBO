@@ -1,0 +1,119 @@
+/* style.css */
+.login-container {
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+    -fx-max-width: 400px;
+    -fx-min-width: 300px;
+    -fx-alignment: center;
+}
+
+.scene-title {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #A91D3A; /* Warna merah maroon UMM */
+    -fx-text-alignment: center;
+    -fx-padding-bottom: 20px;
+}
+
+.login-label {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333; /* Warna teks label tetap netral */
+}
+
+.login-field {
+    -fx-background-color: white;
+    -fx-border-color: #A91D3A; /* Border warna merah maroon UMM */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.login-button {
+    -fx-background-color: #0096F2; /* Warna merah maroon UMM */
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #0096F2; /* Warna merah maroon lebih gelap saat hover */
+}
+
+.error-message {
+    -fx-text-fill: #A91D3A; /* Warna merah maroon UMM */
+    -fx-font-size: 12px;
+    -fx-padding-top: 10px;
+    -fx-text-alignment: center;
+}
+
+/* Layout GridPane */
+.grid-pane {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px; /* Sesuaikan ukuran font sesuai kebutuhan */
+}
+
+.form-label { /* Gaya untuk label di form */
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.form-field { /* Gaya untuk input field di form */
+    -fx-background-color: white;
+    -fx-border-color: #A91D3A;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.back-button {
+    -fx-background-color: #6c757d; /* Contoh warna abu-abu */
+    -fx-text-fill: white;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-table-cell-border-color: transparent; /* Menghilangkan border antar sel */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #A91D3A; /* Warna header tabel */
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: white;
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: white;
+}
+
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
+.submit-success-label { /* Gaya untuk label sukses */
+    -fx-text-fill: #16FF00; /* Warna hijau */
+}
+
+.submit-failed-label { /* Gaya untuk label gagal */
+    -fx-text-fill: #FF1E1E; /* Warna merah */
+}
+
+.success-message {
+    -fx-text-fill: green; /* Warna hijau untuk pesan sukses */
+}

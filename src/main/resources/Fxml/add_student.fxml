@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Priority?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="controller.AddStudentController"
+          alignment="center"
+          hgap="10"
+          vgap="10">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
+        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+    </columnConstraints>
+
+    <Label text="Tambah Mahasiswa"
+           GridPane.columnIndex="0" GridPane.rowIndex="0"
+           GridPane.columnSpan="2"
+           styleClass="scene-title" />
+
+    <Label text="Nama:"
+           GridPane.columnIndex="0" GridPane.rowIndex="1"
+           styleClass="form-label" />
+    <TextField fx:id="nameField"
+               GridPane.columnIndex="1" GridPane.rowIndex="1"
+               styleClass="form-field" />
+
+    <Label text="NIM:"
+           GridPane.columnIndex="0" GridPane.rowIndex="2"
+           styleClass="form-label" />
+    <TextField fx:id="nimField"
+               GridPane.columnIndex="1" GridPane.rowIndex="2"
+               styleClass="form-field" />
+
+    <Label text="Fakultas:"
+           GridPane.columnIndex="0" GridPane.rowIndex="3"
+           styleClass="form-label" />
+    <TextField fx:id="fakultasField"
+               GridPane.columnIndex="1" GridPane.rowIndex="3"
+               styleClass="form-field" />
+
+    <Label text="Jurusan:"
+           GridPane.columnIndex="0" GridPane.rowIndex="4"
+           styleClass="form-label" />
+    <TextField fx:id="jurusanField"
+               GridPane.columnIndex="1" GridPane.rowIndex="4"
+               styleClass="form-field" />
+
+    <Button text="Submit"
+            GridPane.columnIndex="1" GridPane.rowIndex="5"
+            onAction="#handleSubmit"
+            styleClass="login-button" />
+
+    <Button text="Kembali"
+            GridPane.columnIndex="0" GridPane.rowIndex="5"
+            onAction="#handleBack"
+            styleClass="login-button" />
+
+    <Label fx:id="submitFailed" text="NIM harus 15 digit!"
+           GridPane.columnIndex="0" GridPane.rowIndex="6"
+           GridPane.columnSpan="2"
+           styleClass="error-message"
+           visible="false" />
+</GridPane>

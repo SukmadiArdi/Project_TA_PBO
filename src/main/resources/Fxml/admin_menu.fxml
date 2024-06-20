@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane alignment="center" hgap="6" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21"
+          fx:controller="controller.AdminMenuController">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <Label text="Menu Admin"
+           GridPane.columnIndex="0" GridPane.rowIndex="1"
+           styleClass="scene-title" />
+
+    <Button text="Tambah Mahasiswa"
+            GridPane.columnIndex="2" GridPane.rowIndex="0"
+            onAction="#addStudent" />
+
+    <Button text="Daftar Mahasiswa"
+            GridPane.columnIndex="2" GridPane.rowIndex="1"
+            onAction="#displayStudent" />
+
+    <Button text="Tambah Buku"
+            GridPane.columnIndex="2" GridPane.rowIndex="2"
+            onAction="#inputBook" />
+
+    <Button text="Logout"
+            GridPane.columnIndex="2" GridPane.rowIndex="3"
+            onAction="#logout" />
+
+</GridPane>
