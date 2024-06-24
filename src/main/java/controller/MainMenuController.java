@@ -34,8 +34,5 @@ public class MainMenuController {
         loginStage.setScene(scene);
         loginStage.show();
 
-
-        // Opsional: Close main menu window
-        // ((Stage) loginButton.getScene().getWindow()).close();
     }
 }

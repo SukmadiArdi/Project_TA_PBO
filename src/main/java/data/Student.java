@@ -5,8 +5,12 @@ import Util.iMenu;
 import books.Book;
 import com.main.LibrarySystem;
 import exception.custom.IllegalAdminAccess;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,10 +19,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class Student extends User implements iMenu {
-    public static ArrayList<UserStudent> arr_userStudent = new ArrayList<>();
+    public static ObservableList<UserStudent> arr_userStudent = FXCollections.observableArrayList();
 
     //Konstruktor untuk arraylist arr_userStudent.
     public static class UserStudent {
@@ -29,6 +31,22 @@ public class Student extends User implements iMenu {
             this.nim = nim;
             this.fakultas = fakultas;
             this.prodi = prodi;
+        }
+
+        public String getNama() {
+            return nama;
+        }
+
+        public String getNim() {
+            return nim;
+        }
+
+        public String getFakultas() {
+            return fakultas;
+        }
+
+        public String getProdi() {
+            return prodi;
         }
     }
 
@@ -150,11 +168,8 @@ public class Student extends User implements iMenu {
         gridPane.add(backButton, 0, 2, 2, 1);
 
         Scene scene = new Scene(gridPane, 600, 400);
-        // Get a reference to the main application instance
-        LibrarySystem mainApp = LibrarySystem.getInstance(); // Assuming you have a way to get it
-        if (mainApp != null) {
-            scene.getStylesheets().add(mainApp.getClass().getResource("/Css/style.css").toExternalForm());
-        }
+
+        scene.getStylesheets().add(Student.class.getResource("/Css/style.css").toExternalForm());
         showBorrowedBooksStage.setScene(scene);
         showBorrowedBooksStage.show();
 
@@ -246,9 +261,9 @@ public class Student extends User implements iMenu {
         grid.add(submitButton, 0, 4);
         grid.add(returnButton, 1, 4);
 
-        Scene returnBookScene = new Scene(grid, 600, 400); // Sesuaikan ukuran scene
-        returnBookScene.getStylesheets().add(LibrarySystem.getInstance().getClass().getResource("/Css/style.css").toExternalForm());
-        returnBooksStage.setScene(returnBookScene);
+        Scene scene = new Scene(grid, 600, 400); // Sesuaikan ukuran scene
+        scene.getStylesheets().add(Student.class.getResource("/Css/style.css").toExternalForm());
+        returnBooksStage.setScene(scene);
         returnBooksStage.show();
 
         // Action button
@@ -310,7 +325,7 @@ public class Student extends User implements iMenu {
     }
 
     // Helper method to filter and display borrowed books
-    public static void filterAndDisplayBorrowedBooks(TableView<Book> tableView) {
+    private static void filterAndDisplayBorrowedBooks(TableView<Book> tableView) {
         tableView.getItems().clear(); // Clear previous items
         for (Book borrowedBook : Book.arr_borrowedBook) {
             if (borrowedBook.borrower != null && borrowedBook.borrower.equals(LibrarySystem.NIM)) {
@@ -327,7 +342,7 @@ public class Student extends User implements iMenu {
         for (UserStudent i : arr_userStudent) {
             if (i.nim.equals(username.getText())) {
                 menu();
-                return true;
+                return false;
             }
         }
         throw new IllegalAdminAccess("NIM tidak ditemukan!");

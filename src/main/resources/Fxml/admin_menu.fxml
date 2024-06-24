@@ -14,19 +14,19 @@
            GridPane.columnIndex="0" GridPane.rowIndex="1"
            styleClass="scene-title" />
 
-    <Button text="Tambah Mahasiswa"
+    <Button fx:id="addStudentButton" text="Tambah Mahasiswa"
             GridPane.columnIndex="2" GridPane.rowIndex="0"
             onAction="#addStudent" />
 
-    <Button text="Daftar Mahasiswa"
+    <Button fx:id="displayStudentButton" text="Daftar Mahasiswa"
             GridPane.columnIndex="2" GridPane.rowIndex="1"
             onAction="#displayStudent" />
 
-    <Button text="Tambah Buku"
+    <Button fx:id="addBookButton" text="Tambah Buku"
             GridPane.columnIndex="2" GridPane.rowIndex="2"
             onAction="#inputBook" />
 
-    <Button text="Logout"
+    <Button fx:id="logoutButton" text="Logout"
             GridPane.columnIndex="2" GridPane.rowIndex="3"
             onAction="#logout" />
 

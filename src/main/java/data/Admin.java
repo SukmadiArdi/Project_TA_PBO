@@ -2,21 +2,13 @@ package data;
 
 import Util.iMenu;
 import controller.AddStudentController;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Random;
-
-import static data.Student.arr_userStudent;
 
 
 public class Admin extends User implements iMenu {
@@ -68,52 +60,20 @@ public class Admin extends User implements iMenu {
 
 
     public void displayStudent() {
-        // Membuat stage baru
-        Stage displayStudentStage = new Stage();
-        displayStudentStage.setTitle("UMM Library - Daftar Mahasiswa");
+        try {
+            // Load the FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DisplayStudent.fxml"));
+            Parent root = loader.load();
 
-        // Label
-        Label sceneTitle = new Label("Daftar Mahasiswa");
-        sceneTitle.getStyleClass().add("scene-title");
+            // Set the scene and stage
+            Stage stage = new Stage();
+            stage.setTitle("Daftar Mahasiswa");
+            stage.setScene(new Scene(root));
+            stage.show();
 
-        // Membuat ListView untuk menampilkan mahasiswa
-        ListView<String> listView = new ListView<>();
-        listView.getStyleClass().add("list-view");
-
-        // Menampilkan daftar mahasiswa (dengan pemisah)
-        for (Student.UserStudent student : arr_userStudent) {
-            String studentInfo = String.format(
-                    "Nama: %s\nNIM: %s\nFakultas: %s\nProdi: %s\n---------------------------",
-                    student.nama, student.nim, student.fakultas, student.prodi
-            );
-            listView.getItems().add(studentInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        // Tombol Kembali
-        Button backButton = new Button("Kembali");
-        backButton.getStyleClass().add("login-button");
-
-        // Grid Layout
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-
-        grid.add(sceneTitle, 0, 0, 2, 1); // Span 2 kolom
-        grid.add(listView, 0, 1, 2, 1);   // Span 2 kolom dan beberapa baris
-        grid.add(backButton, 0, 2, 2, 1); // Span 2 kolom, di bawah ListView
-
-        Scene scene = new Scene(grid, 600, 400);
-        scene.getStylesheets().add(getClass().getResource("/Css/style.css").toExternalForm());
-        displayStudentStage.setScene(scene);
-        displayStudentStage.show();
-
-        // Action Button Kembali
-        backButton.setOnAction(event -> {
-            menu(); // Kembali ke menu admin
-            displayStudentStage.close();
-        });
     }
 
 

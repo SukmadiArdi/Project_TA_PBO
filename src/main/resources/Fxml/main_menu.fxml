@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.MainMenuController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controller.MainMenuController">
     <top>
-        <HBox spacing="10">
-            <Button text="Login Admin" onAction="#showAdminLogin" />
-            <Button text="Login Student" onAction="#showStudentLogin" />
+        <HBox alignment="CENTER" style="-fx-background-color: #454545;" BorderPane.alignment="TOP_LEFT">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <Button onAction="#showAdminLogin" styleClass="login-button" text="Login as Admin" />
+            <Button onAction="#showStudentLogin" styleClass="login-button" text="Login as Student" />
         </HBox>
     </top>
+
     <center>
+        <VBox alignment="CENTER">
+
+        </VBox>
     </center>
 </BorderPane>

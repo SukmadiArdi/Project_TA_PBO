@@ -20,7 +20,7 @@ public class AdminMenuController {
     private Admin admin;
 
     public void initialize(){
-        admin = LibrarySystem.getInstance().getAdmin(); // Mendapatkan instance Admin dari LibrarySystem
+        admin = LibrarySystem.getInstance().getAdmin(); // Get the Admin instance from LibrarySystem
     }
 
     @FXML
@@ -40,8 +40,7 @@ public class AdminMenuController {
 
     @FXML
     private void logout() throws Exception {
-        LibrarySystem librarySystemObj = new LibrarySystem();
-        librarySystemObj.start(new Stage());
-        addStudentButton.getScene().getWindow().hide();
+        LibrarySystem.getInstance().start(new Stage());
+        logoutButton.getScene().getWindow().hide();
     }
 }
