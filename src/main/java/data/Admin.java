@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -28,7 +29,7 @@ public class Admin extends User implements iMenu {
             Stage adminMenuStage = new Stage();
             adminMenuStage.setTitle("UMM Library - Admin Menu");
             Scene scene = new Scene(root, 1360, 720);
-            scene.getStylesheets().add(getClass().getResource("/Css/style.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Css/style.css")).toExternalForm());
             adminMenuStage.setScene(scene);
             adminMenuStage.show();
 
@@ -50,7 +51,7 @@ public class Admin extends User implements iMenu {
             Stage addStudentStage = new Stage();
             addStudentStage.setTitle("Tambah Mahasiswa");
             Scene scene = new Scene(root, 400, 350); // Sesuaikan ukuran form
-            scene.getStylesheets().add(getClass().getResource("/Css/style.css").toExternalForm());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Css/style.css")).toExternalForm());
             addStudentStage.setScene(scene);
             addStudentStage.show();
         } catch (IOException e) {

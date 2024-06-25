@@ -1,5 +1,8 @@
 package books;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Book {
@@ -15,10 +18,10 @@ public class Book {
 
 
     //ArrayList untuk menyimpan list buku yang terdaftar.
-    public static ArrayList<Book> arr_bookList = new ArrayList<>();
+    public static ObservableList<Book> arr_bookList = FXCollections.observableArrayList();
 
     //ArrayList untuk menyimpan list buku yang sedang dipinjam mahasiswa.
-    public static ArrayList<Book> arr_borrowedBook = new ArrayList<>();
+    public static ObservableList<Book> arr_borrowedBook = FXCollections.observableArrayList();
 
 
     //====================================== METHOD ======================================

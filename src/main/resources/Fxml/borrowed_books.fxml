@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.BorrowedBooksController">
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <Label fx:id="sceneTitle" styleClass="scene-title" text="Daftar Buku yang Dipinjam"/>
+
+    <TableView fx:id="table" styleClass="table-view">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID Buku" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="bookId"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="titleColumn" text="Nama Buku" prefWidth="200">
+                <cellValueFactory>
+                    <PropertyValueFactory property="title"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="authorColumn" text="Penulis" prefWidth="150">
+                <cellValueFactory>
+                    <PropertyValueFactory property="author"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="categoryColumn" text="Kategori" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="category"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="durationColumn" text="Durasi (Hari)" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="duration"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <Button fx:id="backButton" text="Kembali" styleClass="login-button"/>
+</VBox>

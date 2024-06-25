@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DisplayStudentController">
+    <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+    <Text text="Daftar Mahasiswa" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+        <font><Font size="20" /></font>
+    </Text>
+    <TableView fx:id="studentTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+        <columns>
+            <TableColumn fx:id="nimColumn" text="NIM" />
+            <TableColumn fx:id="namaColumn" text="Nama" />
+            <TableColumn fx:id="fakultasColumn" text="Fakultas" />
+            <TableColumn fx:id="prodiColumn" text="Prodi" />
+        </columns>
+    </TableView>
+    <HBox alignment="CENTER_RIGHT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Button onAction="#handleBackButton" text="Kembali" />
+    </HBox>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER" />
+        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints vgrow="NEVER" />
+    </rowConstraints>
+</GridPane>

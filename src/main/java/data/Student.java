@@ -4,6 +4,8 @@ package data;
 import Util.iMenu;
 import books.Book;
 import com.main.LibrarySystem;
+import controller.BorrowedBooksController;
+import controller.StudentMenuController;
 import exception.custom.IllegalAdminAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,9 +17,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class Student extends User implements iMenu {
     public static ObservableList<UserStudent> arr_userStudent = FXCollections.observableArrayList();
@@ -52,57 +55,25 @@ public class Student extends User implements iMenu {
 
     @Override
     public void menu() {
-        Stage studentMenuStage = new Stage();
-        studentMenuStage.setTitle("UMM Library - Student Menu");
+        try {
+            Stage studentMenuStage = new Stage();
+            studentMenuStage.setTitle("UMM Library - Student Menu");
 
-        //Label
-        Label sceneTitle = new Label("Student Menu");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/student_menu.fxml"));
+            Parent root = loader.load();
 
-        //Font style
-        sceneTitle.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
+            StudentMenuController controller = loader.getController();
+            controller.initialize(this); // Inisialisasi controller dengan objek Student ini
 
-        //Font color
-        sceneTitle.setStyle("-fx-text-fill: #A91D3A;");
-
-        //Button
-        Button borrowedBookButton = new Button("Buku Terpinjam");
-        Button borrowBookButton = new Button("Pinjam Buku");
-        Button returnBookButton = new Button("Kembalikan Buku");
-
-        //Grid layout
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-
-        grid.add(sceneTitle, 0, 1);
-
-        grid.add(borrowedBookButton, 2, 1);
-        grid.add(borrowBookButton, 2, 2);
-        grid.add(returnBookButton, 2, 3);
-
-        grid.setVgap(10);
-        grid.setHgap(5);
-
-        Scene studentmenuScene = new Scene(grid, 1360, 720);
-        studentMenuStage.setScene(studentmenuScene);
-        studentMenuStage.show();
-
-        //Action button
-        borrowedBookButton.setOnAction(event -> {
-            showBorrowedBooks();
-            studentMenuStage.close();
-        });
-
-        borrowBookButton.setOnAction(event -> {
-            choiceBooks();
-            studentMenuStage.close();
-        });
-
-        returnBookButton.setOnAction(event -> {
-            returnBooks();
-            studentMenuStage.close();
-        });
-
+            Scene studentMenuScene = new Scene(root, 1360, 720);
+            studentMenuScene.getStylesheets().add(Objects.requireNonNull(LibrarySystem.class.getResource("/Css/style.css")).toExternalForm());
+            studentMenuStage.setScene(studentMenuScene);
+            studentMenuStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void choiceBooks() {
@@ -110,75 +81,23 @@ public class Student extends User implements iMenu {
     }
 
     public static void showBorrowedBooks() {
-        Stage showBorrowedBooksStage = new Stage();
-        showBorrowedBooksStage.setTitle("Informasi Buku Yang Dipinjam");
+        try {
+            Stage showBorrowedBooksStage = new Stage();
+            showBorrowedBooksStage.setTitle("Informasi Buku Yang Dipinjam");
 
-        Label sceneTitle = new Label("Daftar Buku yang Dipinjam");
-        sceneTitle.getStyleClass().add("scene-title");
+            FXMLLoader loader = new FXMLLoader(Student.class.getResource("/Fxml/borrowed_books.fxml"));
+            Parent root = loader.load();
 
-        TableView<Book> table = new TableView<>();
-        table.getStyleClass().add("table-view");
+            BorrowedBooksController controller = loader.getController();
+            controller.initialize(LibrarySystem.getInstance().getStudent()); // Inisialisasi controller dengan objek Student
 
-        // Columns (with adjusted widths)
-        TableColumn<Book, String> idColumn = new TableColumn<>("ID Buku");
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-        idColumn.setPrefWidth(100);
-
-        TableColumn<Book, String> titleColumn = new TableColumn<>("Nama Buku");
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        titleColumn.setPrefWidth(200);
-
-        TableColumn<Book, String> authorColumn = new TableColumn<>("Penulis");
-        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        authorColumn.setPrefWidth(150);
-
-        TableColumn<Book, String> categoryColumn = new TableColumn<>("Kategori");
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        categoryColumn.setPrefWidth(100);
-
-        TableColumn<Book, Integer> durationColumn = new TableColumn<>("Durasi (Hari)");
-        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        durationColumn.setPrefWidth(100);
-
-        table.getColumns().addAll(idColumn, titleColumn, authorColumn, categoryColumn, durationColumn);
-
-        // Mencari buku yang dipinjam oleh mahasiswa saat ini
-        for (Book borrowedBook : Book.arr_borrowedBook) {
-            for (Book book : Book.arr_bookList) {
-                if (book.getBookId().equals(borrowedBook.getBookId())) {
-                    table.getItems().add(book); // Menambahkan buku yang cocok ke tabel
-                    break; // Tidak perlu mencari lagi jika sudah ketemu
-                }
-            }
+            Scene scene = new Scene(root, 600, 400);
+            scene.getStylesheets().add(Objects.requireNonNull(Student.class.getResource("/Css/style.css")).toExternalForm());
+            showBorrowedBooksStage.setScene(scene);
+            showBorrowedBooksStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        // Back Button
-        Button backButton = new Button("Kembali");
-        backButton.getStyleClass().add("login-button");
-
-        // Grid Layout
-        GridPane gridPane = new GridPane();
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(25, 25, 25, 25));
-
-        gridPane.add(sceneTitle, 0, 0, 2, 1);
-        gridPane.add(table, 0, 1, 2, 1);
-        gridPane.add(backButton, 0, 2, 2, 1);
-
-        Scene scene = new Scene(gridPane, 600, 400);
-
-        scene.getStylesheets().add(Student.class.getResource("/Css/style.css").toExternalForm());
-        showBorrowedBooksStage.setScene(scene);
-        showBorrowedBooksStage.show();
-
-        // Action Button Kembali
-        backButton.setOnAction(event -> {
-            Student studentObj = new Student();
-            studentObj.menu();
-            showBorrowedBooksStage.close();
-        });
     }
 
 
@@ -262,7 +181,7 @@ public class Student extends User implements iMenu {
         grid.add(returnButton, 1, 4);
 
         Scene scene = new Scene(grid, 600, 400); // Sesuaikan ukuran scene
-        scene.getStylesheets().add(Student.class.getResource("/Css/style.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(Student.class.getResource("/Css/style.css")).toExternalForm());
         returnBooksStage.setScene(scene);
         returnBooksStage.show();
 
