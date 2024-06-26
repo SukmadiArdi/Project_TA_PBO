@@ -8,14 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
-public class BorrowedBooksController {
+public class ReturnBooksController {
 
     @FXML
-    private Label sceneTitle;
-    @FXML
-    private TableView<Book> table;
+    private TableView<Book> tableView;
     @FXML
     private TableColumn<Book, String> idColumn;
     @FXML
@@ -25,11 +25,18 @@ public class BorrowedBooksController {
     @FXML
     private TableColumn<Book, String> categoryColumn;
     @FXML
-    private TableColumn<Book, Integer> durationColumn;
+    private TableColumn<Book, Integer> stockColumn;
+    @FXML
+    private TextField bookIdField;
+    @FXML
+    private Label messageLabel;
+    @FXML
+    private Button submitButton;
     @FXML
     private Button backButton;
 
     private Student student;
+    private Stage stage;
 
     @FXML
     public void initialize() {
@@ -38,18 +45,13 @@ public class BorrowedBooksController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
 
-        // Title of the scene
-        sceneTitle.setText("Daftar Buku yang Dipinjam");
+        // Event handler for submit button
+        submitButton.setOnAction(event -> handleSubmit());
 
         // Event handler for back button
-        backButton.setOnAction(event -> {
-            if (student != null) {
-                student.menu();
-            }
-            backButton.getScene().getWindow().hide();
-        });
+        backButton.setOnAction(event -> handleBack());
     }
 
     public void setStudent(Student student) {
@@ -57,16 +59,50 @@ public class BorrowedBooksController {
         filterAndDisplayBorrowedBooks(); // Panggil method untuk memfilter dan menampilkan data setelah student di set
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @FXML
+    private void handleSubmit() {
+        String idBukuYangDikembalikan = bookIdField.getText();
+        boolean bukuDikembalikan = false;
+
+        for (Book book : Book.arr_borrowedBook) {
+            if (book.getBookId().equals(idBukuYangDikembalikan)) {
+                // Lakukan logika pengembalian buku, seperti menambahkan stok kembali
+                book.setStock(book.getStock() + 1);
+                book.setBorrower(null); // Hapus informasi peminjam
+                Book.arr_borrowedBook.remove(book); // Hapus buku dari daftar yang sedang dipinjam
+                bukuDikembalikan = true;
+                messageLabel.setText("Buku berhasil dikembalikan.");
+                break;
+            }
+        }
+
+        if (!bukuDikembalikan) {
+            messageLabel.setText("ID buku tidak ditemukan.");
+        }
+        messageLabel.setVisible(true);
+    }
+
+    @FXML
+    private void handleBack() {
+        if (stage != null) {
+            stage.close();
+        }
+    }
+
     // Helper method to filter and display borrowed books
     private void filterAndDisplayBorrowedBooks() {
-        table.getItems().clear();
+        tableView.getItems().clear();
         System.out.println("Borrowed books list size: " + Book.arr_borrowedBook.size());
         for (Book borrowedBook : Book.arr_borrowedBook) {
             System.out.println("Checking book: " + borrowedBook.getTitle() + " borrowed by: " + borrowedBook.getBorrower());
             // Check if the book is borrowed by the current student
             if (borrowedBook.getBorrower() != null &&
                     borrowedBook.getBorrower().equals(LibrarySystem.NIM)) {
-                table.getItems().add(borrowedBook);
+                tableView.getItems().add(borrowedBook);
                 System.out.println("Added book: " + borrowedBook.getTitle());
             }
         }

@@ -154,8 +154,8 @@ public class User {
 
         // Action Button Kembali
         backButton.setOnAction(event -> {
-            // Tambahkan logika untuk kembali ke menu sebelumnya (misalnya, menu mahasiswa)
-            choiceBooksStage.close();
+            studentObj.menu(); // Panggil metode menu dari objek Student
+            choiceBooksStage.close(); // Tutup stage pemilihan buku
         });
     }
 

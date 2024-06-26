@@ -3,32 +3,23 @@ package books;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
 public class Book {
 
-    //==================================== ATRIBUT ====================================
-    public String bookId;
-    public String title;
-    public String author;
-    public String category;
-    public String borrower;
-    public int stock;
-    public int duration;
+    // Attributes
+    private String bookId;
+    private String title;
+    private String author;
+    private String category;
+    private String borrower;
+    private int stock;
+    private int duration;
 
-
-    //ArrayList untuk menyimpan list buku yang terdaftar.
+    // ObservableLists to store registered and borrowed books
     public static ObservableList<Book> arr_bookList = FXCollections.observableArrayList();
-
-    //ArrayList untuk menyimpan list buku yang sedang dipinjam mahasiswa.
     public static ObservableList<Book> arr_borrowedBook = FXCollections.observableArrayList();
 
-
-    //====================================== METHOD ======================================
-
-    // 4 Method konstruktor dengan nama yang sama, bertujuan untuk menerapkan fungsi overloading (Modul 3)
+    // Constructors
     public Book() {
-
     }
 
     public Book(String category) {
@@ -48,15 +39,9 @@ public class Book {
         this.author = author;
         this.category = category;
         this.stock = stock;
-
     }
 
-
-    //=================================== SETTER METHOD ====================================
-    public void setBorrower(String borrower) {
-        this.borrower = borrower;
-    }
-
+    // Setter Methods
     public void setBookId(String bookId) {
         this.bookId = bookId;
     }
@@ -73,6 +58,10 @@ public class Book {
         this.category = category;
     }
 
+    public void setBorrower(String borrower) {
+        this.borrower = borrower;
+    }
+
     public void setStock(int stock) {
         this.stock = stock;
     }
@@ -81,7 +70,7 @@ public class Book {
         this.duration = duration;
     }
 
-    //=================================== GETTER METHOD ==================================
+    // Getter Methods
     public String getBookId() {
         return bookId;
     }
@@ -98,6 +87,10 @@ public class Book {
         return category;
     }
 
+    public String getBorrower() {
+        return borrower;
+    }
+
     public int getStock() {
         return stock;
     }
@@ -105,9 +98,4 @@ public class Book {
     public int getDuration() {
         return duration;
     }
-
-    public String getBorrower() {
-        return borrower;
-    }
-
 }

@@ -54,4 +54,8 @@ public class LibrarySystem extends Application {
     public Student getStudent() {
         return studentObj;
     }
+
+    public void setNIM(String nim) {
+        NIM = nim;
+    }
 }
