@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class ReturnBooksController {
 
@@ -36,7 +35,6 @@ public class ReturnBooksController {
     private Button backButton;
 
     private Student student;
-    private Stage stage;
 
     @FXML
     public void initialize() {
@@ -48,19 +46,15 @@ public class ReturnBooksController {
         stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
 
         // Event handler for submit button
-        submitButton.setOnAction(event -> handleSubmit());
+        submitButton.setOnAction(_ -> handleSubmit());
 
         // Event handler for back button
-        backButton.setOnAction(event -> handleBack());
+        backButton.setOnAction(_ -> handleBack());
     }
 
     public void setStudent(Student student) {
         this.student = student;
-        filterAndDisplayBorrowedBooks(); // Panggil method untuk memfilter dan menampilkan data setelah student di set
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
+        Book.filterAndDisplayBorrowedBooks(tableView, LibrarySystem.NIM);
     }
 
     @FXML
@@ -88,23 +82,10 @@ public class ReturnBooksController {
 
     @FXML
     private void handleBack() {
-        if (stage != null) {
-            stage.close();
+        if (student != null) {
+            student.menu();
         }
+        backButton.getScene().getWindow().hide();
     }
 
-    // Helper method to filter and display borrowed books
-    private void filterAndDisplayBorrowedBooks() {
-        tableView.getItems().clear();
-        System.out.println("Borrowed books list size: " + Book.arr_borrowedBook.size());
-        for (Book borrowedBook : Book.arr_borrowedBook) {
-            System.out.println("Checking book: " + borrowedBook.getTitle() + " borrowed by: " + borrowedBook.getBorrower());
-            // Check if the book is borrowed by the current student
-            if (borrowedBook.getBorrower() != null &&
-                    borrowedBook.getBorrower().equals(LibrarySystem.NIM)) {
-                tableView.getItems().add(borrowedBook);
-                System.out.println("Added book: " + borrowedBook.getTitle());
-            }
-        }
-    }
 }

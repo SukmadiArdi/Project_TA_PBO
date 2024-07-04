@@ -2,11 +2,9 @@ package controller;
 
 import com.main.LibrarySystem;
 import data.Admin;
-import data.Student;
 import exception.custom.IllegalAdminAccess;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -22,8 +20,6 @@ public class LoginController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private Label errorLoginMessage;
-    @FXML
-    private Button loginButton;
 
     private LibrarySystem librarySystem;
 
@@ -43,7 +39,7 @@ public class LoginController implements Initializable {
             usernameField.getScene().getWindow().hide();
         } else if (usernameField.getText().length() == 15 && passwordField.getText().length() < 15) {
             try {
-                if (librarySystem.getStudent().isStudents(usernameField)) {
+                if (librarySystem.getStudent().isStudents(usernameField) && librarySystem.getStudent().isStudents(passwordField)) {
                     errorLoginMessage.setVisible(false);
                     LibrarySystem.NIM = usernameField.getText();
                     librarySystem.getStudent().menu();

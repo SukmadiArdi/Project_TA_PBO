@@ -18,6 +18,9 @@ public class LibrarySystem extends Application {
     private final Admin adminObj;
     private final Student studentObj;
 
+    public Stage loginStage;
+    public Stage mainStage;
+
     public LibrarySystem() {
         adminObj = new Admin();
         studentObj = new Student();
@@ -35,12 +38,22 @@ public class LibrarySystem extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/main_menu.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root, 1360, 720);
+        Scene scene = new Scene(root);
 
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Css/style.css")).toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        mainStage = primaryStage; // Simpan referensi stage utama
+        primaryStage.setOnCloseRequest(event -> {
+            if (loginStage != null && loginStage.isShowing()) {
+                loginStage.close();
+            } else {
+                primaryStage.close();
+            }
+        });
+
     }
 
     public static LibrarySystem getInstance() {

@@ -5,6 +5,7 @@ import data.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AddStudentController {
 
@@ -39,7 +40,7 @@ public class AddStudentController {
 
     @FXML
     private void handleBack(){
-        admin.menu();
-        nameField.getScene().getWindow().hide();
+        Stage stage = (Stage) nameField.getScene().getWindow();
+        stage.close();
     }
 }

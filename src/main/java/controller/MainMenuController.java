@@ -1,5 +1,6 @@
 package controller;
 
+import com.main.LibrarySystem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,12 +25,12 @@ public class MainMenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/login.fxml"));
         Parent root = loader.load();
 
-        // Tidak perlu lagi mengatur instance LibrarySystem sebagai controller
-        // karena LoginController akan menangani logika login
-
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/Css/Style.css").toExternalForm());
         loginStage.setScene(scene);
+        // Simpan referensi loginStage di LibrarySystem
+        LibrarySystem.getInstance().loginStage = loginStage;
+
         loginStage.show();
     }
 }

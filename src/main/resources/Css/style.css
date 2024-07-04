@@ -41,7 +41,6 @@
 .login-button, .back-button {
     -fx-background-color: #A91D3A;
     -fx-text-fill: white;
-    -fx-padding: 10px 20px;
     -fx-border-radius: 5px;
     -fx-font-size: 14px;
     -fx-cursor: hand;
@@ -56,6 +55,15 @@
 .back-button {
     -fx-background-color: #6c757d;
 }
+
+.u-button {
+    -fx-background-color: #A91D3A; /* Warna biru */
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
 
 /* Error and Success Messages */
 .error-message, .submit-failed-label {

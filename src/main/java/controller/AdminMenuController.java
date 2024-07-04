@@ -19,6 +19,7 @@ public class AdminMenuController {
 
     private Admin admin;
 
+    @FXML
     public void initialize(){
         admin = LibrarySystem.getInstance().getAdmin(); // Get the Admin instance from LibrarySystem
     }

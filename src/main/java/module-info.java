@@ -12,6 +12,7 @@ module Tugas_6_JavaFX{
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires annotations;
 
     opens com.main to javafx.fxml;
     opens controller to javafx.fxml;

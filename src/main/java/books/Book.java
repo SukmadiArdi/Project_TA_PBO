@@ -2,6 +2,7 @@ package books;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 
 public class Book {
 
@@ -97,5 +98,16 @@ public class Book {
 
     public int getDuration() {
         return duration;
+    }
+    public static void filterAndDisplayBorrowedBooks(TableView<Book> tableView, String borrowerId) {
+        tableView.getItems().clear();
+        System.out.println("Borrowed books list size: " + arr_borrowedBook.size());
+        for (Book borrowedBook : arr_borrowedBook) {
+            System.out.println("Checking book: " + borrowedBook.getTitle() + " borrowed by: " + borrowedBook.getBorrower());
+            if (borrowedBook.getBorrower() != null && borrowedBook.getBorrower().equals(borrowerId)) {
+                tableView.getItems().add(borrowedBook);
+                System.out.println("Added book: " + borrowedBook.getTitle());
+            }
+        }
     }
 }

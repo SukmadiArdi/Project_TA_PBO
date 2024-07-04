@@ -2,12 +2,16 @@ package controller;
 
 import data.Student;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class DisplayStudentController {
+
+    @FXML
+    private Label sceneTitle;
 
     @FXML
     private TableView<Student.UserStudent> studentTable;
@@ -32,6 +36,7 @@ public class DisplayStudentController {
         fakultasColumn.setCellValueFactory(new PropertyValueFactory<>("fakultas"));
         prodiColumn.setCellValueFactory(new PropertyValueFactory<>("prodi"));
 
+        sceneTitle.setText("Daftar Mahasiswa");
         // Load data into the table
         studentTable.setItems(Student.arr_userStudent);
     }

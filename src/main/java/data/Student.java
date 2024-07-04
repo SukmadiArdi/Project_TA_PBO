@@ -1,7 +1,6 @@
 package data;
 
 import Util.iMenu;
-import books.Book;
 import com.main.LibrarySystem;
 import controller.BorrowedBooksController;
 import controller.ReturnBooksController;
@@ -10,13 +9,9 @@ import exception.custom.IllegalAdminAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -65,7 +60,7 @@ public class Student extends User implements iMenu {
             StudentMenuController controller = loader.getController();
             controller.initialize(this); // Inisialisasi controller dengan objek Student ini
 
-            Scene studentMenuScene = new Scene(root, 1360, 720);
+            Scene studentMenuScene = new Scene(root);
             studentMenuScene.getStylesheets().add(Objects.requireNonNull(LibrarySystem.class.getResource("/Css/style.css")).toExternalForm());
             studentMenuStage.setScene(studentMenuScene);
             studentMenuStage.show();
@@ -90,7 +85,7 @@ public class Student extends User implements iMenu {
             BorrowedBooksController controller = loader.getController();
             controller.setStudent(LibrarySystem.getInstance().getStudent()); // Panggil setStudent untuk mengatur objek Student
 
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(Student.class.getResource("/Css/style.css").toExternalForm());
             showBorrowedBooksStage.setScene(scene);
             showBorrowedBooksStage.show();
@@ -110,7 +105,7 @@ public class Student extends User implements iMenu {
             ReturnBooksController controller = loader.getController();
             controller.setStudent(this); // Set the student instance
 
-            Scene scene = new Scene(root, 600, 400);
+            Scene scene = new Scene(root);
             // Use the correct path for the CSS file
             scene.getStylesheets().add(getClass().getResource("/Css/style.css").toExternalForm());
             returnBooksStage.setScene(scene);

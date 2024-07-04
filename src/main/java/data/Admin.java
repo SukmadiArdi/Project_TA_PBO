@@ -28,7 +28,7 @@ public class Admin extends User implements iMenu {
 
             Stage adminMenuStage = new Stage();
             adminMenuStage.setTitle("UMM Library - Admin Menu");
-            Scene scene = new Scene(root, 1360, 720);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Css/style.css")).toExternalForm());
             adminMenuStage.setScene(scene);
             adminMenuStage.show();
@@ -50,7 +50,7 @@ public class Admin extends User implements iMenu {
 
             Stage addStudentStage = new Stage();
             addStudentStage.setTitle("Tambah Mahasiswa");
-            Scene scene = new Scene(root, 400, 350); // Sesuaikan ukuran form
+            Scene scene = new Scene(root); // Sesuaikan ukuran form
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Css/style.css")).toExternalForm());
             addStudentStage.setScene(scene);
             addStudentStage.show();
@@ -64,18 +64,21 @@ public class Admin extends User implements iMenu {
         try {
             // Load the FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DisplayStudent.fxml"));
-            Parent root = loader.load();
+            Parent root = loader.load(); // Pastikan root node baru dibuat setiap kali FXML dimuat.
 
             // Set the scene and stage
             Stage stage = new Stage();
             stage.setTitle("Daftar Mahasiswa");
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Css/style.css")).toExternalForm());
+            stage.setScene(scene);
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 
     public void inputBook() {
