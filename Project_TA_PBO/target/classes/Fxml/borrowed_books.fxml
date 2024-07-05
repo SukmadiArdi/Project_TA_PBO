@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1380.0"
+            xmlns="http://javafx.com/javafx/21" fx:controller="controller.BorrowedBooksController">
+    <children>
+        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="0.0" prefHeight="50.0"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints vgrow="NEVER"/>
+            </rowConstraints>
+            <children>
+
+                <TableView fx:id="tableView" styleClass="table-view" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                    <columns>
+                        <TableColumn fx:id="idColumn" maxWidth="1.7976931348623157E308" prefWidth="165.3333282470703"
+                                     text="ID Buku">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="bookId"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="titleColumn" maxWidth="1.7976931348623157E308" prefWidth="454.0"
+                                     text="Nama Buku">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="title"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="authorColumn" maxWidth="1.7976931348623157E308" prefWidth="285.0"
+                                     text="Penulis">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="author"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="categoryColumn" maxWidth="1.7976931348623157E308"
+                                     prefWidth="221.66668701171875" text="Kategori">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="category"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="durationColumn" maxWidth="1.7976931348623157E308"
+                                     prefWidth="207.6666259765625" text="Durasi (Hari)">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="duration"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <AnchorPane>
+                    <children>
+
+                        <Label fx:id="sceneTitle" layoutY="17.0" styleClass="scene-title"
+                               text="Daftar Buku yang Dipinjam"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="50.0" GridPane.rowIndex="2">
+                    <children>
+
+                        <Button fx:id="backButton" layoutY="13.0" styleClass="login-button" text="Kembali"
+                                AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="787.0"
+                                AnchorPane.topAnchor="13.0"/>
+                    </children>
+                </AnchorPane>
+            </children>
+            <padding>
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+            </padding>
+        </GridPane>
+    </children>
+</AnchorPane>
