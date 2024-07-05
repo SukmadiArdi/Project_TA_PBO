@@ -22,9 +22,7 @@ public class ReturnBooksController {
     @FXML
     private TableColumn<Book, String> authorColumn;
     @FXML
-    private TableColumn<Book, String> categoryColumn;
-    @FXML
-    private TableColumn<Book, Integer> stockColumn;
+    private TableColumn<Book, Integer> durationColumn;
     @FXML
     private TextField bookIdField;
     @FXML
@@ -42,8 +40,7 @@ public class ReturnBooksController {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
         // Event handler for submit button
         submitButton.setOnAction(_ -> handleSubmit());
